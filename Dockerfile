@@ -1,4 +1,4 @@
-FROM       ubuntu:16.04.1
+FROM       ubuntu:16.04
 MAINTAINER supppig <supppig@gmail.com>
 
 ENV KCPTUN_VERSION 20170221
