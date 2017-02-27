@@ -33,6 +33,6 @@ sed -ri 's/^.*\"fast_open\".*/    \"fast_open\": false/' ./user-config.json
 nohup python ./shadowsocks/server.py -d start
 
 #SSH
-nohup /usr/sbin/sshd -D >/dev/null &
+#nohup /usr/sbin/sshd -D >/dev/null &
 
 echo "OK"
