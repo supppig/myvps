@@ -4,12 +4,12 @@ MAINTAINER supppig <supppig@gmail.com>
 ENV KCPTUN_VERSION 20170221
 
 # pre
-RUN apt-get update && \
-apt-get upgrade  && \
-apt-get clean && \
-apt-get update && \
-apt-get install -y openssh-server python python-pip python-m2crypto libnet1-dev libpcap0.8-dev git gcc wget psmisc && \
-apt-get clean
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get clean
+RUN apt-get update
+RUN apt-get install -y openssh-server python python-pip python-m2crypto libnet1-dev libpcap0.8-dev git gcc wget psmisc
+RUN apt-get clean
 
 # ssh
 RUN mkdir /var/run/sshd
