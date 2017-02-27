@@ -16,10 +16,10 @@ RUN mkdir /var/run/sshd
 RUN echo 'root:supppig' |chpasswd
 RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
-#CMD    ["/usr/sbin/sshd", "-D"]
+CMD    ["/usr/sbin/sshd", "-D"]
 
 # run sh
 COPY ./run.sh /root/run.sh
 RUN chmod 777 /root/run.sh
 #ENTRYPOINT ["/root/run.sh"]
-CMD ["/root/run.sh"]
+
