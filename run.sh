@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#SSH
-/usr/sbin/sshd -D
-
 #KCP
 cd /root
 mkdir kcp
@@ -34,5 +31,8 @@ sed -ri 's/^.*\"protocol\".*/    \"protocol\": \"auth_sha1_v2_compatible\",/' ./
 sed -ri 's/^.*\"obfs\".*/    \"obfs\": \"http_simple_compatible\",/' ./user-config.json
 sed -ri 's/^.*\"fast_open\".*/    \"fast_open\": false/' ./user-config.json
 nohup python ./shadowsocks/server.py -d start
+
+#SSH
+nohup /usr/sbin/sshd -D >/dev/null &
 
 echo "OK"
