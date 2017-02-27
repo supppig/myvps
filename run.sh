@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#SSH
+/usr/sbin/sshd -D
+
 #KCP
 cd /root
 mkdir kcp
