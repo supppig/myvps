@@ -1,5 +1,5 @@
 export /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-nohup /usr/sbin/sshd -D >/dev/null &
+#nohup /usr/sbin/sshd -D >/dev/null &
 cd /root
 mkdir kcp
 cd kcp
