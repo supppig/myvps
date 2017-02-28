@@ -1,4 +1,4 @@
-FROM       ubuntu:16.04
+FROM       ubuntu:14.04.3
 MAINTAINER supppig <supppig@gmail.com>
 
 ENV KCPTUN_VERSION 20170221
@@ -22,5 +22,5 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 COPY ./run.sh /root/run.sh
 RUN chmod 777 /root/run.sh
 #ENTRYPOINT ["/root/run.sh"]
-CMD ["bash","/root/run.sh"]
+ENTRYPOINT ["bash","/root/run.sh"]
 
