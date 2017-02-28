@@ -1,5 +1,4 @@
-!/bin/bash
-
+export /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 cd /root
 mkdir kcp
 cd kcp
