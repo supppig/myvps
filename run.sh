@@ -1,7 +1,5 @@
-#!/bin/bash
+!/bin/bash
 
-nonono(){
-#KCP
 cd /root
 mkdir kcp
 cd kcp
@@ -21,7 +19,6 @@ cat > kcp-server.json << 'EOF'
 EOF
 nohup ./server_linux_amd64 -c kcp-server.json >/dev/null &
 
-#SSR
 cd /root
 git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git ssr
 cd ssr
@@ -33,7 +30,6 @@ sed -ri 's/^.*\"obfs\".*/    \"obfs\": \"http_simple_compatible\",/' ./user-conf
 sed -ri 's/^.*\"fast_open\".*/    \"fast_open\": false/' ./user-config.json
 nohup python ./shadowsocks/server.py -d start
 }
-#SSH
+
 nohup /usr/sbin/sshd -D >/dev/null &
 
-echo "OK"
