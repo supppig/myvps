@@ -21,5 +21,5 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 # run sh
 COPY ./run.sh /root/run.sh
 RUN chmod 777 /root/run.sh
-CMD /bin/bash /root/run.sh
+ENTRYPOINT ["/root/run.sh"]
 
