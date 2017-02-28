@@ -2,8 +2,8 @@ export /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 cd /root
 mkdir kcp
 cd kcp
-url=`wget -q -O- https://api.github.com/repos/xtaci/kcptun/releases/latest | grep -m1 'assets_url' | cut -d'"' -f4`
-downloadurl=`wget -q -O- $url | grep 'browser_download_url' | grep 'linux-amd64' | cut -d'"' -f4`
+url=`wget --no-check-certificate -q -O- https://api.github.com/repos/xtaci/kcptun/releases/latest | grep -m1 'assets_url' | cut -d'"' -f4`
+downloadurl=`wget --no-check-certificate -q -O- $url | grep 'browser_download_url' | grep 'linux-amd64' | cut -d'"' -f4`
 wget -q -O kcp.tar.gz $downloadurl
 tar zxf kcp.tar.gz
 cat > kcp-server.json << 'EOF'
