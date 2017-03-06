@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 cd /root
 url=$(wget -q -O- https://api.github.com/repos/xtaci/kcptun/releases/latest | grep "rowser_download_url" | grep "linux-amd64" | cut -d'"' -f4)
 echo $url
