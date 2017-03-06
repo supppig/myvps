@@ -1,0 +1,8 @@
+{
+  "listen":":4000",
+  "target":"127.0.0.1:8388",
+	"key":"supppig",
+	"crypt":"none",
+	"mode":"fast",
+	"nocomp":true
+}
