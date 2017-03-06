@@ -10,7 +10,7 @@ apt-get clean
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN mkdir /root/kcp
 COPY ./kcp-server.json /root/kcp/kcp-server.json
-COPY ./getkcp.sh /root/getkcp.sh
+COPY ./getkcp.sh /root/kcp/getkcp.sh
 RUN chmod 777 /root/getkcp.sh
 COPY ./run.sh /root/run.sh
 RUN chmod 777 /root/run.sh
