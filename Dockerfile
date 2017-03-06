@@ -8,10 +8,12 @@ apt-get install -y openssh-server python python-pip python-m2crypto git wget && 
 apt-get clean
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 RUN mkdir /root/kcp
 COPY ./kcp-server.json /root/kcp/kcp-server.json
 COPY ./getkcp.sh /root/kcp/getkcp.sh
-RUN chmod 777 /root/getkcp.sh
+RUN chmod 777 /root/kcp/getkcp.sh
+
 COPY ./run.sh /root/run.sh
 RUN chmod 777 /root/run.sh
 
