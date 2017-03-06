@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/usr/sbin/sshd -D
+
 cd /root/kcp
 nohup ./server_linux_amd64 -c kcp-server.json >/dev/null &
 
