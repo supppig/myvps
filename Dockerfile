@@ -9,6 +9,7 @@ apt-get clean  && \
 apt-get install -y openssh-server python python-pip python-m2crypto libnet1-dev libpcap0.8-dev git gcc wget && \
 apt-get clean
 
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 COPY ./kcp-server.json /root/kcp-server.json
 COPY ./run.sh /root/run.sh
 RUN chmod 777 /root/run.sh
