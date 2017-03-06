@@ -1,4 +1,4 @@
-FROM       ubuntu:14.04.3
+FROM       debian
 MAINTAINER supppig <supppig@gmail.com>
 
 ENV KCPTUN_VERSION 20170303
