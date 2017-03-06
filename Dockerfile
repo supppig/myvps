@@ -8,5 +8,4 @@ apt-get install -y wget
 
 COPY ./getkcp.sh /root/getkcp.sh
 WORKDIR /root
-RUN chmod 777 /root/getkcp.sh
-RUN ./getkcp.sh
+RUN bash ./getkcp.sh
