@@ -5,7 +5,7 @@ MAINTAINER supppig <supppig@gmail.com>
 RUN apt-get update && \
 apt-get install -y openssh-server
 
-COPY ./test.sh /root/ttt.sh
+COPY ./ttt.sh /root/ttt.sh
 RUN chmod 777 /root/ttt.sh
 
 # ssh
