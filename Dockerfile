@@ -34,6 +34,9 @@ RUN sed -ri 's/^.*\"obfs\".*/    \"obfs\": \"tls1.2_ticket_auth_compatible\",/' 
 # KCPtun
 RUN mkdir /root/kcp
 WORKDIR /root/kcp
-RUN wget https://github.com/xtaci/kcptun/releases/download/v${KCPTUN_VERSION}/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz
-RUN tar -zxvf kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz
+#RUN wget https://github.com/xtaci/kcptun/releases/download/v${KCPTUN_VERSION}/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz
+RUN url=$(wget -q -O- https://api.github.com/repos/xtaci/kcptun/releases/latest | grep "rowser_download_url" | grep "linux-amd64" | cut -d'"' -f4)
+RUN wget -O kcp.tar.gz ${url} 
+#RUN tar -zxvf kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz
+RUN tar zxvf kcp.tar.gz
 RUN mv /root/kcp-server.json .
