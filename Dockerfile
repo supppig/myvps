@@ -2,11 +2,10 @@ FROM       debian:latest
 MAINTAINER supppig <supppig@gmail.com>
 
 # pre
-RUN apt-get update && \
-apt-get clean  && \
-apt-get install -y openssh-server python python-pip python-m2crypto git wget unzip && \
-apt-get install --no-install-recommends build-essential autoconf libtool libssl-dev gawk debhelper dh-systemd init-system-helpers pkg-config asciidoc xmlto apg libpcre3-dev && \
-apt-get clean
+RUN apt-get update
+RUN apt-get install -y openssh-server python python-pip python-m2crypto git wget unzip
+RUN apt-get install --no-install-recommends build-essential autoconf libtool libssl-dev gawk debhelper dh-systemd init-system-helpers pkg-config asciidoc xmlto apg libpcre3-dev
+RUN apt-get clean
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
