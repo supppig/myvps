@@ -4,7 +4,8 @@ MAINTAINER supppig <supppig@gmail.com>
 # pre
 RUN apt-get update && \
 apt-get clean  && \
-apt-get install -y openssh-server python python-pip python-m2crypto git wget && \
+apt-get install -y openssh-server python python-pip python-m2crypto git wget unzip && \
+apt-get install --no-install-recommends build-essential autoconf libtool libssl-dev gawk debhelper dh-systemd init-system-helpers pkg-config asciidoc xmlto apg libpcre3-dev && \
 apt-get clean
 
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -25,14 +26,15 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 CMD    ["/usr/sbin/sshd", "-D"]
 
 # SSR
-RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git ssr
-RUN mv ssr /root/
+WORKDIR /root
+RUN wget -O /root/libev.zip https://github.com/shadowsocksr/shadowsocksr-libev/archive/master.zip
+RUN unzip libev.zip
+RUN mv shadowsocksr-libev-master ssr
 WORKDIR /root/ssr
-RUN cp ./config.json ./user-config.json
-RUN sed -ri 's/^.*\"password\".*/    \"password\": \"supppig\",/' ./user-config.json
-RUN sed -ri 's/^.*\"method\".*/    \"method\": \"rc4-md5\",/' ./user-config.json
-RUN sed -ri 's/^.*\"protocol\".*/    \"protocol\": \"auth_sha1_v2_compatible\",/' ./user-config.json
-RUN sed -ri 's/^.*\"obfs\".*/    \"obfs\": \"tls1.2_ticket_auth_compatible\",/' ./user-config.json
+RUN dpkg-buildpackage -b -us -uc -i
+WORKDIR /root
+RUN dpkg -i shadowsocks-libev*.deb
+
 
 # KCPtun
 WORKDIR /root/kcp
