@@ -31,10 +31,11 @@ RUN wget -O /root/libev.zip https://github.com/shadowsocksr/shadowsocksr-libev/a
 RUN unzip libev.zip
 RUN mv shadowsocksr-libev-master ssr
 WORKDIR /root/ssr
-RUN dpkg-buildpackage -b -us -uc -i
-WORKDIR /root
-RUN dpkg -i shadowsocks-libev*.deb
-
+#RUN dpkg-buildpackage -b -us -uc -i
+#WORKDIR /root
+#RUN dpkg -i shadowsocks-libev*.deb
+RUN ./configure && make
+RUN make install
 
 # KCPtun
 WORKDIR /root/kcp
