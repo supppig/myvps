@@ -43,7 +43,7 @@ RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git
 WORKDIR /root/shadowsocks-libev
 RUN git submodule update --init --recursive
 RUN apt-get install --no-install-recommends -y devscripts equivs
-RUN mk-build-deps --root-cmd sudo --install --tool "apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends -y"
+RUN mk-build-deps --install --tool "apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends -y"
 RUN ./autogen.sh && dpkg-buildpackage -b -us -uc
 WORKDIR /root
 RUN dpkg -i shadowsocks-libev*.deb
