@@ -3,7 +3,7 @@ MAINTAINER supppig <supppig@gmail.com>
 
 # pre
 RUN apt-get update
-RUN apt-get install -y openssh-server python python-pip python-m2crypto git wget unzip
+RUN apt-get install -y openssh-server python python-pip python-m2crypto git wget unzip sudo lsb-release
 RUN apt-get install -y --no-install-recommends build-essential autoconf libtool libssl-dev gawk debhelper dh-systemd init-system-helpers pkg-config asciidoc xmlto apg libpcre3-dev
 RUN apt-get clean
 
@@ -39,14 +39,11 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 #SS
 WORKDIR /root
-RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git
-WORKDIR /root/shadowsocks-libev
-RUN git submodule update --init --recursive
-RUN apt-get install --no-install-recommends -y devscripts equivs
-RUN mk-build-deps --install --tool "apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends -y"
-RUN ./autogen.sh && dpkg-buildpackage -b -us -uc
-WORKDIR /root
-RUN dpkg -i shadowsocks-libev*.deb
+RUN mkdir ss-build
+WORKDIR /root/ss-build
+RUN wget https://github.com/shadowsocks/shadowsocks-libev/raw/master/scripts/build_deb.sh
+RUN chmod 777 build_deb.sh
+RUN ./build_deb.sh
 
 # KCPtun
 WORKDIR /root/kcp
