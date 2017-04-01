@@ -26,16 +26,27 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 #CMD    ["/usr/sbin/sshd", "-D"]
 
 # SSR
-WORKDIR /root
-RUN wget -O /root/libev.zip https://github.com/shadowsocksr/shadowsocksr-libev/archive/master.zip
-RUN unzip libev.zip
-RUN mv shadowsocksr-libev-master ssr
-WORKDIR /root/ssr
+#WORKDIR /root
+#RUN wget -O /root/libev.zip https://github.com/shadowsocksr/shadowsocksr-libev/archive/master.zip
+#RUN unzip libev.zip
+#RUN mv shadowsocksr-libev-master ssr
+#WORKDIR /root/ssr
 #RUN dpkg-buildpackage -b -us -uc -i
 #WORKDIR /root
 #RUN dpkg -i shadowsocks-libev*.deb
-RUN ./configure && make
-RUN make install
+##RUN ./configure && make
+##RUN make install
+
+#SS
+WORKDIR /root
+RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git
+WORKDIR /root/shadowsocks-libev
+RUN git submodule update --init --recursive
+RUN apt-get install --no-install-recommends devscripts equivs
+RUN mk-build-deps --root-cmd sudo --install --tool "apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends -y"
+RUN ./autogen.sh && dpkg-buildpackage -b -us -uc
+WORKDIR /root
+RUN dpkg -i shadowsocks-libev*.deb
 
 # KCPtun
 WORKDIR /root/kcp
